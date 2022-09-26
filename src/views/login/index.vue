@@ -73,7 +73,8 @@ export default {
         loginName: 'admin',
         password: 'admin',
         code: '',
-        loginType: 0
+        loginType: 0,
+        clientToken: ''
       },
       loginRules: {
         loginName: [{ required: true, message: '请输入账号', trigger: 'blur' }],
@@ -111,12 +112,10 @@ export default {
         this.loading = false
       }
     },
-    // 随机生成验证码
-    randomString() { return Math.random().toString(36).slice(2, 6) },
     // 图片验证码
     async imageCode() {
-      const m = this.randomString()
-      const res = await imageCodeAPI(m)
+      this.loginForm.clientToken = Math.random().toString(36).slice(2, 6)
+      const res = await imageCodeAPI(this.loginForm.clientToken)
       console.log(res)
       this.codeImg = res.request.responseURL
     }

@@ -14,7 +14,7 @@ const actions = {
     try {
       const res = await login(data)
       console.log(res)
-      commit('SET_TOKEN', 'token')
+      commit('SET_TOKEN', res.data.token)
     } catch (e) {
       console.log(e)
     }
