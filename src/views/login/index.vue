@@ -106,18 +106,21 @@ export default {
         this.loading = true
         // 请求接口
         this.$store.dispatch('user/loginAction', this.loginForm)
-      } catch (e) {
-        console.log(e)
+        this.$router.push('/')
       } finally {
         this.loading = false
       }
     },
     // 图片验证码
     async imageCode() {
-      this.loginForm.clientToken = Math.random().toString(36).slice(2, 6)
-      const res = await imageCodeAPI(this.loginForm.clientToken)
-      console.log(res)
-      this.codeImg = res.request.responseURL
+      try {
+        this.loginForm.clientToken = Math.random().toString(36).slice(2, 6)
+        const res = await imageCodeAPI(this.loginForm.clientToken)
+        // console.log(res)
+        this.codeImg = res.request.responseURL
+      } catch (e) {
+        console.log(e)
+      }
     }
   }
 }

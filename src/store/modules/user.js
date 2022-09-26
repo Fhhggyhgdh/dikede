@@ -3,12 +3,14 @@ import { login } from '@/api/login'
 const state = {
   token: ''
 }
+
 const mutations = {
   // 设置token
   SET_TOKEN(state, token) {
     state.token = token
   }
 }
+
 const actions = {
   async loginAction({ commit }, data) {
     try {
